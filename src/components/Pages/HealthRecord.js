@@ -45,7 +45,7 @@ function HealthRecord() {
                 .catch((err) => console.error(err))
         }, 500);
 
-    }, [id])
+    }, [id, specificHRAnimal])
 
 
     function createHealthRecord(animal) {
@@ -99,7 +99,7 @@ function HealthRecord() {
         setShowtHealthForm(!showtHealthForm)
         setShowHREdit(false)
     }
-    {console.log(animal)}
+    
     function editHealthRecord(id) {
         
         toggleHealthForm()

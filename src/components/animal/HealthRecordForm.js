@@ -8,7 +8,6 @@ function HealthRecordForm({handleSubmit, btnText, projectData, healthRecordName,
 
     const { healthRecord } = useParams()
 
-    //console.log(projectData)
     const animal = projectData
     
     const [medication, setMedication] = useState((animal[healthRecord] && disableCreation) && animal[healthRecord][0])
@@ -16,7 +15,6 @@ function HealthRecordForm({handleSubmit, btnText, projectData, healthRecordName,
 
     function submit(e) {
         e.preventDefault()
-        //console.log(medication)
         projectData[healthRecord].push(medication) 
         handleSubmit(projectData) 
         
@@ -24,7 +22,6 @@ function HealthRecordForm({handleSubmit, btnText, projectData, healthRecordName,
 
     function handleChange(e) {
         setMedication({...medication, [e.target.name]: e.target.value})
-        //console.log(medication)
     }
 
 
