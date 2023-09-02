@@ -1,0 +1,55 @@
+.health_record_card {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 5px;
+    width: 450px;
+    height: 200px;
+    margin: 1.5% 0%;
+    margin-left: 8.5%;
+    color: #333;
+}
+
+.health_record_card h2{
+    border-radius: 5px;
+    color: rgb(19, 19, 19);
+    margin-bottom: .8em;
+}
+
+.health_record_card_inf{
+    display: flex;
+    margin-left: 5%;
+}
+
+.health_record_card p{
+    margin: 5px;
+    width: 130px;
+}
+
+.health_record_card_actions{
+    display: flex;
+    align-items: center;
+}
+
+.health_record_card_actions a, 
+.health_record_card_actions button{
+    text-decoration: none;
+    border: none;
+    background-color: #FF216E;
+    color: #fff;
+    font-size: .9em;
+    padding: .6em 1em;
+    margin: 0 15%;
+    margin-top: .5em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    transition: 0.5s;
+    
+}
+
+.health_record_card_actions a:hover,
+.health_record_actions button:hover{
+    color:#000072 ;
+}

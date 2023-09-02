@@ -1,0 +1,57 @@
+.vac_sch_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4em;
+}
+
+.vac_sch_container h1 {
+    font-size: 2.5em;
+}
+
+.vac_sch_container h2 {
+    margin-top: 25px;
+
+}
+
+
+.vac_sch_container div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+
+
+}
+
+.vac_sch_container div div {
+    flex-direction: column;
+}
+
+.vac_sch_container div ul {
+    list-style: none;
+    margin: 0.2px;
+    justify-content: space-between;
+
+}
+
+.vac_sch_container div li {
+    text-align: center;
+    margin: 2px;
+    border-radius: 5px;
+    padding: 0 10px;
+    border: 0.15rem solid #ff266c;
+}
+
+.li_color {
+    background-color: #ff266c;
+}
+
+.p_align {
+    text-align: center;
+}
+
+.div_column{
+    flex-direction: column;
+}

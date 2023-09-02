@@ -1,0 +1,35 @@
+.footer {
+    background-color: #0ccbff;
+    color: #ff266c;
+    padding: 3em;
+    text-align: center;
+}
+
+.social_list {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.social_list li {
+  margin: 0 1em;
+}
+
+.social_list li:hover {
+    color:#000072
+}
+
+.social_list svg {
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.copy_rigth {
+    margin-top: 2em;
+}
+
+.copy_rigth span {
+    font-weight: bold;
+    color:#ff266c;
+    font-family: 'patrick hand';
+}

@@ -1,0 +1,59 @@
+.animal_card {
+    background-color: rgb(255, 255, 255);
+    padding: 2em 2em .3em 2em;
+    border-radius: 5px;
+    width: 24%;
+    margin: 0.5%;
+    color: #333;
+}
+
+.animal_card h2{
+    text-align: center;
+    background-color:#FF216E ;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 30px;
+    padding: 2% 0;
+}
+
+.animal_card_inf{
+    width: 70%;
+    margin-left: 20%;
+}
+
+.animal_card p{
+    margin: 3px;
+}
+
+.animal_card_actions{
+    margin-top: 1.2em;
+    display: flex;
+    align-items: center;
+}
+
+.animal_card_actions a, 
+.animal_card_actions button{
+    text-decoration: none;
+    border: none;
+    background-color: #FF216E;
+    color: #fff;
+    font-size: .9em;
+    padding: .6em 1em;
+    margin-right: 3em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    transition: 0.5s;
+    
+}
+
+.animal_card_actions svg {
+    margin-right: .5em;
+}
+
+.animal_card_actions a:hover,
+.animal_card_actions button:hover{
+    color:#000072 ;
+}

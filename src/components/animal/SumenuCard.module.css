@@ -1,0 +1,54 @@
+.sumenu_card {
+    list-style: none;
+    float: left;
+    margin-top: 20px;
+}
+
+.sumenu_card li {
+    position: relative;
+    float: left;
+}
+
+.sumenu_card li a {
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+}
+
+.sumenu_card li a:hover {
+    background: #FF216E;
+    color: #fff;
+}
+
+.sumenu_card li ul {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    background-color: #fff;
+    display: none;  
+}
+
+.sumenu_card li:hover ul,
+.sumenu_card li.over ul {
+    display: block;
+}
+
+.sumenu_card li ul li {
+    display: block;
+    width: 150px;
+}
+
+.sumenu_card_bschevrondown{
+    margin-right: 5px;
+}
+
+.sumenu_card p, p:hover{
+    color: #333;
+    cursor: pointer;
+}
+
+.sumenu_card p:hover{
+    background: #FF216E;
+    color: #fff;
+}

@@ -1,0 +1,148 @@
+{
+  "animals": [
+    {
+      "name": "Floki",
+      "birth": "2023-03-05",
+      "gender": {
+        "id": "1",
+        "sex": "Masculino"
+      },
+      "kind": "Cão",
+      "race": "Splitz Alemão",
+      "hair": "Black and Tan",
+      "vaccines": [
+        {
+          "name": "Nobivac Dhpp+L",
+          "application": "2023-04-20",
+          "reinforcement": "2023-05-11",
+          "responsible": "Dra. Renta E. Coelho",
+          "id": "c0ad0f2e-fa01-4dfe-831f-360aaf98df5b"
+        },
+        {
+          "name": "Nobivac Dhpp+L",
+          "application": "2023-05-11",
+          "reinforcement": "2023-06-03",
+          "responsible": "Dra. Renta E. Coelho",
+          "id": "f1252ba8-26c5-48c6-a895-f78c97ccc942"
+        },
+        {
+          "name": "Nobivac Dhpp+L",
+          "reinforcement": "2023-07-03",
+          "application": "2023-05-11",
+          "responsible": "Dra. Renta E. Coelho",
+          "id": "8c5b172e-19e6-4b78-ae42-dcaaf6f3fae9"
+        },
+        {
+          "name": "teste",
+          "application": "2023-08-01",
+          "reinforcement": "2023-08-02",
+          "responsible": "Maria da Dores",
+          "id": "fcc424eb-0ae1-4d4d-9a2a-664e412be39c"
+        }
+      ],
+      "deworming": [],
+      "ectoparasites": [],
+      "id": 1
+    },
+    {
+      "name": "Capitú",
+      "birth": "2021-11-17",
+      "gender": {
+        "id": "2",
+        "sex": "Feminino"
+      },
+      "kind": "Canis lupus familiaris",
+      "race": "Pastor Alemão",
+      "hair": "Capa preta ",
+      "vaccines": [],
+      "deworming": [],
+      "ectoparasites": [],
+      "id": 2
+    },
+    {
+      "name": "Babalu",
+      "birth": "2022-11-16",
+      "gender": {
+        "id": "1",
+        "sex": "Masculino"
+      },
+      "kind": "Canis lupus familiaris",
+      "race": "Fila Brasileiro",
+      "hair": "Preta",
+      "vaccines": [],
+      "deworming": [],
+      "ectoparasites": [],
+      "id": 3
+    },
+    {
+      "name": "Juju",
+      "birth": "2020-10-08",
+      "gender": {
+        "id": "2",
+        "sex": "Feminino"
+      },
+      "kind": "Canis lupus familiaris",
+      "race": "Pinscher",
+      "hair": "Black and Tan",
+      "vaccines": [],
+      "deworming": [],
+      "ectoparasites": [],
+      "id": 4
+    },
+    {
+      "name": "Tete",
+      "birth": "2023-07-12",
+      "gender": {
+        "id": "1",
+        "sex": "Masculino"
+      },
+      "kind": "Canis lupus familiaris",
+      "race": "Pinscher",
+      "hair": "Black and Tan",
+      "vaccines": [],
+      "deworming": [],
+      "ectoparasites": [],
+      "id": 5
+    },
+    {
+      "name": "Jubileu",
+      "birth": "2022-03-22",
+      "gender": {
+        "id": "1",
+        "sex": "Masculino"
+      },
+      "kind": "Canis lupus familiaris",
+      "race": "Splitz Alemão",
+      "hair": "Branca",
+      "vaccines": [],
+      "deworming": [],
+      "ectoparasites": [],
+      "id": 6
+    },
+    {
+      "name": "teste",
+      "birth": "2023-07-01",
+      "gender": {
+        "id": "1",
+        "sex": "Masculino"
+      },
+      "kind": "teste",
+      "race": "teste",
+      "hair": "teste",
+      "vaccines": [],
+      "deworming": [],
+      "ectoparasites": [],
+      "id": 7
+    }
+  ],
+  "gender": [
+    {
+      "id": 1,
+      "name": "Masculino"
+    },
+    {
+      "id": 2,
+      "name": "Feminino"
+    }
+  ]
+}
