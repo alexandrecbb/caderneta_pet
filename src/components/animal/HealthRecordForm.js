@@ -8,7 +8,6 @@ function HealthRecordForm({handleSubmit, btnText, projectData, healthRecordName,
 
     const { healthRecord } = useParams()
 
-    //const projectDataDefault = projectData
     //console.log(projectData)
     const animal = projectData
     
@@ -24,7 +23,6 @@ function HealthRecordForm({handleSubmit, btnText, projectData, healthRecordName,
     }
 
     function handleChange(e) {
-        //setAnimal({...animal, [e.target.name]: e.target.value})
         setMedication({...medication, [e.target.name]: e.target.value})
         //console.log(medication)
     }

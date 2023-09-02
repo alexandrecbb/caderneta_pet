@@ -136,8 +136,9 @@ function HealthRecord() {
                                 {healthRecord === 'vaccines' ? (
                                     <Container customClass="start">
                                         {showHealthRecord.length > 0 &&
-                                            showHealthRecord.map((animalHealthRecord, i) => (
+                                            showHealthRecord.map((animalHealthRecord) => (
                                                 <HealthRecordCard
+                                                    key={animalHealthRecord.id}
                                                     id={animalHealthRecord.id}
                                                     name={animalHealthRecord.name}
                                                     application={animalHealthRecord.application}
