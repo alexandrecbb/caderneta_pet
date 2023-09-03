@@ -11,6 +11,7 @@
     font-size: 4em;
     padding: 0 2em;
     padding-top: .2em;   
+    color: #333333;
 }
 
 .healthRecord_top div h1 {
@@ -50,7 +51,7 @@
 
 .form_record{
     width: 30%;
-    margin-left: 33.5%;
+    margin-left: 28%;
     margin-top: 5%;
     display: flex;
 }
@@ -62,6 +63,7 @@
     cursor: pointer;
     border: none;
     transition: 0.5s;
+    font-weight: bold
 }
 
 .form_record_btn:hover {

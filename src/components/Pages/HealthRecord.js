@@ -159,8 +159,7 @@ function HealthRecord() {
                             {!showtHealthForm ? `Adicionar ${transHealthRecord}` : `Exibir ${transHealthRecord}`}
                         </button>
                         {!showtHealthForm ? (
-                            <div className={styles.form_health}>
-                                {healthRecord === 'vaccines' ? (
+                            <div className={styles.form_health}>  
                                     <Container customClass="start">
                                         {showHealthRecord.length > 0 &&
                                             showHealthRecord.map((animalHealthRecord) => (
@@ -171,6 +170,7 @@ function HealthRecord() {
                                                     application={animalHealthRecord.application}
                                                     reinforcement={animalHealthRecord.reinforcement}
                                                     responsible={animalHealthRecord.responsible}
+                                                    weight={animalHealthRecord.weight}
                                                     handleRemove={removeHealthRecord}
                                                     handleEdit={autoFillForm}
                                                 />
@@ -179,13 +179,6 @@ function HealthRecord() {
                                             <p>{`Não há ${transHealthRecord} cadastrados!`}</p>
                                         )}
                                     </Container>
-                                ) : healthRecord === 'deworming' ? (
-                                    <p>Conteúdo da opção 2</p>
-                                ) : healthRecord === 'ectoparasites' ? (
-                                    <p>Conteúdo da opção 3</p>
-                                ) : (
-                                    <p>Opção inválida</p>
-                                )}
                             </div>
 
                         ) : (

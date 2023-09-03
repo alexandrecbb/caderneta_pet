@@ -54,8 +54,45 @@
           "id": "07e84aa8-e856-4046-8a37-478aa8f5b7fc"
         }
       ],
-      "deworming": [],
-      "ectoparasites": [],
+      "deworming": [
+        {
+          "name": "Drontal Puppy",
+          "application": "2023-09-07",
+          "reinforcement": "2023-09-14",
+          "weight": "1000",
+          "id": "95cb4428-3e95-4e56-a956-0dee80579371"
+        },
+        {
+          "name": "Drontal Puppy",
+          "application": "2023-05-27",
+          "reinforcement": "2023-06-27",
+          "weight": "1200",
+          "id": "60a356bc-cc43-4131-9c7b-db80ac37c0cb"
+        },
+        {
+          "name": "Vertmax Plus",
+          "application": "2023-06-27",
+          "reinforcement": "2023-09-30",
+          "weight": "1830",
+          "id": "c894e40c-85d0-483d-b5bb-7b2f63aa32c5"
+        },
+        {
+          "application": "2023-07-30",
+          "reinforcement": "2023-08-30",
+          "weight": "2300",
+          "id": "2988f955-e84d-4730-8d6c-b786851fe625",
+          "name": "Vertmax Plus"
+        }
+      ],
+      "ectoparasites": [
+        {
+          "name": "Coleira Scalibor",
+          "application": "2023-08-07",
+          "reinforcement": "2023-12-07",
+          "weight": "2600",
+          "id": "1a0c951f-caa9-4803-8bd5-413951a31126"
+        }
+      ],
       "id": 1
     },
     {

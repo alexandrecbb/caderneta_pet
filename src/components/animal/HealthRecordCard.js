@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
 import styles from './HealthRecordCard.module.css'
 import { BsPencil, BsFillTrashFill } from 'react-icons/bs'
+import { useParams } from 'react-router-dom'
 
-function HealthRecordCard({ id, name, application, reinforcement, responsible, handleRemove, handleEdit }) {
+function HealthRecordCard({ id, name, application, reinforcement, responsible, handleRemove, handleEdit, weight }) {
+
+    const { healthRecord } = useParams()
 
     const remove = (e) => {
         e.preventDefault()
@@ -26,7 +29,7 @@ function HealthRecordCard({ id, name, application, reinforcement, responsible, h
                     <p>Reforço:</p> <p>{reinforcement}</p>
                 </div>
                 <div>
-                    <p>Responsável:</p> <p>{responsible}</p>
+                    {healthRecord === 'vaccines' ? <div><p>Responsável:</p> <p>{responsible}</p></div> : <div><p>Peso:</p> <p>{`${weight} g`}</p></div> }
                 </div>
             </div>
             <div className={styles.health_record_card_actions}>

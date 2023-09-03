@@ -4,23 +4,25 @@ import SubmitButton from '../form/SubmitButton'
 import styles from './AnimalForm.module.css'
 import { useParams } from 'react-router-dom'
 
-function HealthRecordForm({handleSubmit, btnText, projectData, healthRecordName, disableCreation}) {
+function HealthRecordForm({ handleSubmit, btnText, projectData, healthRecordName, disableCreation }) {
 
     const { healthRecord } = useParams()
 
     const animal = projectData
-    
+
     const [medication, setMedication] = useState((animal[healthRecord] && disableCreation) && animal[healthRecord][0])
-    
+
+    const typeOfMedication = (healthRecord === 'vaccines' ?  'responsible' : 'weight')
+
 
     function submit(e) {
         e.preventDefault()
-        {!disableCreation && projectData[healthRecord].push(medication)} 
-        handleSubmit(disableCreation ? medication : projectData) 
+        { !disableCreation && projectData[healthRecord].push(medication) }
+        handleSubmit(disableCreation ? medication : projectData)
     }
 
     function handleChange(e) {
-        setMedication({...medication, [e.target.name]: e.target.value})
+        setMedication({ ...medication, [e.target.name]: e.target.value })
     }
 
 
@@ -52,17 +54,19 @@ function HealthRecordForm({handleSubmit, btnText, projectData, healthRecordName,
                 handleOnChange={handleChange}
                 value={animal[healthRecord] && (medication.reinforcement ? medication.reinforcement : '')}
             />
+            <div className={styles.addKg}>
+                <Input
+                    type="text"
+                    text={healthRecord === 'vaccines' ? "Responsável" : "peso"}
+                    name={healthRecord === 'vaccines' ? "responsible" : "weight"}
+                    placeholder= {healthRecord === 'vaccines' ? "Insira o nome do responsável" : "Insira o peso do animal"} 
+                    handleOnChange={handleChange}
+                    value={animal[healthRecord] && (medication[typeOfMedication] ? medication[typeOfMedication] : '')}
+                />
+                {healthRecord !== 'vaccines' && <span>g</span>}
+            </div>
 
-            <Input
-                type="text"
-                text="Responsável"
-                name="responsible"
-                placeholder="Insira o nome do responsável"
-                handleOnChange={handleChange}
-                value={animal[healthRecord] && (medication.responsible ? medication.responsible : '')}
-            />
-
-            <SubmitButton text={btnText + healthRecordName.substring(0, healthRecordName.length - 1) }/>
+            <SubmitButton text={btnText + healthRecordName.substring(0, healthRecordName.length - 1)} />
         </form>
     )
 }
