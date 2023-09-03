@@ -7,6 +7,12 @@
     margin-bottom: 0.2em;
 }
 
+.healthRecord_top h4{
+    font-size: 4em;
+    padding: 0 2em;
+    padding-top: .2em;   
+}
+
 .healthRecord_top div h1 {
     color: #FF216E;
 }
@@ -39,10 +45,25 @@
     width: 100%;
     margin-top: 40px;
     border-top: 1px solid #292929;
+    display: flex;
 }
 
-.form_record_form {
+.form_record{
     width: 30%;
     margin-left: 33.5%;
     margin-top: 5%;
+    display: flex;
+}
+
+.form_record_btn{
+    height: 1.5em;
+    margin-top: 36%;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: none;
+    transition: 0.5s;
+}
+
+.form_record_btn:hover {
+    color:#FF216E
 }

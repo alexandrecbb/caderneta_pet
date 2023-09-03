@@ -15,9 +15,8 @@ function HealthRecordForm({handleSubmit, btnText, projectData, healthRecordName,
 
     function submit(e) {
         e.preventDefault()
-        projectData[healthRecord].push(medication) 
-        handleSubmit(projectData) 
-        
+        {!disableCreation && projectData[healthRecord].push(medication)} 
+        handleSubmit(disableCreation ? medication : projectData) 
     }
 
     function handleChange(e) {

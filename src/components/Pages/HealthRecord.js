@@ -1,5 +1,7 @@
 import { parse, v4 as uuidv4 } from 'uuid'
 
+import { BsChevronLeft } from 'react-icons/bs'
+
 import styles from './HealthRecord.module.css'
 
 import { useParams } from 'react-router-dom'
@@ -62,8 +64,7 @@ function HealthRecord() {
             body: JSON.stringify(animal)
         })
             .then((resp) => resp.json())
-            .then((data) => {
-                console.log(data)
+            .then(() => {
                 toggleHealthForm()
             })
             .catch((err) => console.error(err))
@@ -100,12 +101,12 @@ function HealthRecord() {
         setShowHREdit(false)
     }
     
-    function editHealthRecord(id) {
+    function autoFillForm(id) {
         
         toggleHealthForm()
         
         const specificHealthRecord = animal[healthRecord].filter(
-            (medication) => medication.id === id
+            (therapy) => therapy.id === id
         )
         
         const specificHRAnimal = animal
@@ -115,8 +116,33 @@ function HealthRecord() {
         setSpecificHRAnimal(specificHRAnimal)
 
         setShowHREdit(true)
-
+        
     }
+
+    function editHealthRecord(medication){
+
+        // Getting the medication index
+        const indexToEdit = animal[healthRecord].findIndex(therapy => therapy.id === medication.id);
+
+        const updatedAnimal = animal
+
+        updatedAnimal[healthRecord][indexToEdit] = medication
+
+
+        fetch(`http://localhost:5000/animals/${updatedAnimal.id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedAnimal)
+        })
+            .then((resp) => resp.json())
+            .then(() => {  
+               setAnimal(updatedAnimal)
+               toggleHealthForm()
+            })
+            .catch((err) => console.error(err))
+    } 
 
     return (<>
         {animal.name ? (
@@ -128,6 +154,7 @@ function HealthRecord() {
                             <h2>{animal.kind}</h2>
                             <h3>{animal.race}</h3>
                         </div>
+                        <h4>{transHealthRecord}</h4>
                         <button className={styles.btn} onClick={toggleHealthForm}>
                             {!showtHealthForm ? `Adicionar ${transHealthRecord}` : `Exibir ${transHealthRecord}`}
                         </button>
@@ -145,7 +172,7 @@ function HealthRecord() {
                                                     reinforcement={animalHealthRecord.reinforcement}
                                                     responsible={animalHealthRecord.responsible}
                                                     handleRemove={removeHealthRecord}
-                                                    handleEdit={editHealthRecord}
+                                                    handleEdit={autoFillForm}
                                                 />
                                             ))}
                                         {showHealthRecord.length === 0 && (
@@ -163,10 +190,11 @@ function HealthRecord() {
 
                         ) : (
                             <div className={styles.form_health}>
-                                <div className={styles.form_record_form}>
+                                <button className={styles.form_record_btn } onClick={toggleHealthForm}> <BsChevronLeft /> Voltar</button>
+                                <div className={styles.form_record}>   
                                     <HealthRecordForm
                                         healthRecordName={transHealthRecord}
-                                        handleSubmit={createHealthRecord}
+                                        handleSubmit={showHREdit ? editHealthRecord : createHealthRecord }
                                         btnText={showHREdit ? 'Atualizar ' : 'Registrar '}
                                         disableCreation={showHREdit ? true : false}
                                         projectData={showHREdit ? specificHRAnimal : animal}
