@@ -41,20 +41,20 @@ function Animals() {
 
     }, [])
 
-    function removeAninmal (id) {
+    function removeAninmal(id) {
         fetch(`http://localhost:5000/animals/${id}`, {
-                method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then((resp) => resp.json())
+            .then(() => {
+                setAnimals(animals.filter((animal) => animal.id !== id))
+                setAnimalMessege('Registro de animal removido!')
+                //message
             })
-                .then((resp) => resp.json())
-                .then(() => {
-                    setAnimals(animals.filter((animal) => animal.id !== id))
-                    setAnimalMessege('Registro de animal removido!')
-                    //message
-                })
-                .catch((err) => console.error(err))
+            .catch((err) => console.error(err))
     }
 
     return (
@@ -80,7 +80,8 @@ function Animals() {
                             key={animal.id}
                             handleRemove={removeAninmal}
                         />
-                    ))}
+                    ))
+                }
                 {!removeLoading && <Loading />}
                 {removeLoading && animals.length === 0 && (
                     <p>Não há animais cadastrados!</p>

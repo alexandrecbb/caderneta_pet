@@ -1,34 +1,40 @@
-import { parse, v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 import { BsChevronLeft } from 'react-icons/bs'
 
 import styles from './HealthRecord.module.css'
 
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Loading from '../layout/Loading'
 import Container from '../layout/Container'
 import HealthRecordForm from '../animal/HealthRecordForm'
 import HealthRecordCard from '../animal/HealthRecordCard'
+import Message from "../layout/Message"
 
 function HealthRecord() {
 
     const { id, healthRecord } = useParams()
 
     const [animal, setAnimal] = useState([])
-    const [transHealthRecord, setTransHealthRecord] = useState(healthRecord)
     const [showHealthRecord, setShowHealthRecord] = useState([])
     const [showtHealthForm, setShowtHealthForm] = useState(false)
     const [showHREdit, setShowHREdit] = useState(false)
-    const [specificHRAnimal, setSpecificHRAnimal ] = useState()
+    const [specificHRAnimal, setSpecificHRAnimal] = useState()
+    const [editMessage, setEditMessage] = useState('')
+    const [removalMessage, setRemovalMessage] = useState('')
+    const [creationMessage, setCreationMessage] = useState('')
 
+    // translate from english to portuguese
 
-    // translating to portuguese
-    useEffect(() => {
-        { healthRecord === 'vaccines' && setTransHealthRecord('Vacinas') }
-        { healthRecord === 'deworming' && setTransHealthRecord('Fermifugos') }
-        { healthRecord === 'ectoparasites' && setTransHealthRecord('Medicamentos') }
-    }, [])
+    const healthRecordTranslations = {
+        vaccines: 'Vacinas',
+        deworming: 'Fermifugos',
+        ectoparasites: 'Ectoparasitas',
+    };
+
+    const transHealthRecord = healthRecordTranslations[healthRecord]
+
 
     useEffect(() => {
 
@@ -52,6 +58,8 @@ function HealthRecord() {
 
     function createHealthRecord(animal) {
 
+        setCreationMessage('')
+
         // Last health record
         const lastHealthRecord = animal[healthRecord][animal[healthRecord].length - 1]
         lastHealthRecord.id = uuidv4()
@@ -66,11 +74,14 @@ function HealthRecord() {
             .then((resp) => resp.json())
             .then(() => {
                 toggleHealthForm()
+                setCreationMessage(`${transHealthRecord.substring(0, transHealthRecord.length - 1)} registrada`)
             })
             .catch((err) => console.error(err))
     }
 
     function removeHealthRecord(id) {
+
+        setRemovalMessage('')
 
         const healthRecordsUpdated = animal[healthRecord].filter(
             (medication) => medication.id !== id
@@ -91,7 +102,7 @@ function HealthRecord() {
             .then(() => {
                 setAnimal(animalUpdated)
                 setShowHealthRecord(healthRecordsUpdated)
-                // message
+                setRemovalMessage(`${transHealthRecord.substring(0, transHealthRecord.length - 1)} excluída`)
             })
             .catch((err) => console.error(err))
     }
@@ -100,26 +111,28 @@ function HealthRecord() {
         setShowtHealthForm(!showtHealthForm)
         setShowHREdit(false)
     }
-    
+
     function autoFillForm(id) {
-        
+
         toggleHealthForm()
-        
+
         const specificHealthRecord = animal[healthRecord].filter(
             (therapy) => therapy.id === id
         )
-        
+
         const specificHRAnimal = animal
 
         specificHRAnimal[healthRecord] = specificHealthRecord
-        
+
         setSpecificHRAnimal(specificHRAnimal)
 
         setShowHREdit(true)
-        
+
     }
 
-    function editHealthRecord(medication){
+    function editHealthRecord(medication) {
+
+        setEditMessage('')
 
         // Getting the medication index
         const indexToEdit = animal[healthRecord].findIndex(therapy => therapy.id === medication.id);
@@ -137,12 +150,13 @@ function HealthRecord() {
             body: JSON.stringify(updatedAnimal)
         })
             .then((resp) => resp.json())
-            .then(() => {  
-               setAnimal(updatedAnimal)
-               toggleHealthForm()
+            .then(() => {
+                setAnimal(updatedAnimal)
+                toggleHealthForm()
+                setEditMessage(`${transHealthRecord.substring(0, transHealthRecord.length - 1)} atualizada`)
             })
             .catch((err) => console.error(err))
-    } 
+    }
 
     return (<>
         {animal.name ? (
@@ -158,36 +172,45 @@ function HealthRecord() {
                         <button className={styles.btn} onClick={toggleHealthForm}>
                             {!showtHealthForm ? `Adicionar ${transHealthRecord}` : `Exibir ${transHealthRecord}`}
                         </button>
+                        {editMessage && <Message type="success" msg={editMessage} />}
+                        {removalMessage && <Message type="success" msg={removalMessage} />}
+                        {creationMessage && <Message type="success" msg={creationMessage} />}
                         {!showtHealthForm ? (
-                            <div className={styles.form_health}>  
-                                    <Container customClass="start">
-                                        {showHealthRecord.length > 0 &&
-                                            showHealthRecord.map((animalHealthRecord) => (
-                                                <HealthRecordCard
-                                                    key={animalHealthRecord.id}
-                                                    id={animalHealthRecord.id}
-                                                    name={animalHealthRecord.name}
-                                                    application={animalHealthRecord.application}
-                                                    reinforcement={animalHealthRecord.reinforcement}
-                                                    responsible={animalHealthRecord.responsible}
-                                                    weight={animalHealthRecord.weight}
-                                                    handleRemove={removeHealthRecord}
-                                                    handleEdit={autoFillForm}
-                                                />
-                                            ))}
-                                        {showHealthRecord.length === 0 && (
-                                            <p>{`Não há ${transHealthRecord} cadastrados!`}</p>
-                                        )}
-                                    </Container>
+                            <div className={styles.form_health}>
+
+                                <div className={styles.teste}>
+                                    <Link className={styles.form_health_link} to='/animals'><BsChevronLeft /> Voltar</Link>
+                                </div>
+
+                                <Container customClass="start">
+                                    {showHealthRecord.length > 0 &&
+                                        showHealthRecord.map((animalHealthRecord) => (
+                                            <HealthRecordCard
+                                                key={animalHealthRecord.id}
+                                                id={animalHealthRecord.id}
+                                                name={animalHealthRecord.name}
+                                                application={animalHealthRecord.application}
+                                                reinforcement={animalHealthRecord.reinforcement}
+                                                responsible={animalHealthRecord.responsible}
+                                                weight={animalHealthRecord.weight}
+                                                handleRemove={removeHealthRecord}
+                                                handleEdit={autoFillForm}
+                                            />
+                                        ))
+                                    }
+                                    {showHealthRecord.length === 0 && (
+                                        <p>{`Não há ${transHealthRecord} cadastrados!`}</p>
+                                    )}
+                                </Container>
                             </div>
 
                         ) : (
                             <div className={styles.form_health}>
-                                <button className={styles.form_record_btn } onClick={toggleHealthForm}> <BsChevronLeft /> Voltar</button>
-                                <div className={styles.form_record}>   
+                                <button className={styles.form_record_btn} onClick={toggleHealthForm}> <BsChevronLeft /> Voltar</button>
+                                <div className={styles.form_record}>
                                     <HealthRecordForm
                                         healthRecordName={transHealthRecord}
-                                        handleSubmit={showHREdit ? editHealthRecord : createHealthRecord }
+                                        handleSubmit={showHREdit ? editHealthRecord : createHealthRecord}
                                         btnText={showHREdit ? 'Atualizar ' : 'Registrar '}
                                         disableCreation={showHREdit ? true : false}
                                         projectData={showHREdit ? specificHRAnimal : animal}
