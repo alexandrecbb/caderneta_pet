@@ -178,7 +178,7 @@ function HealthRecord() {
                         {!showtHealthForm ? (
                             <div className={styles.form_health}>
 
-                                <div className={styles.teste}>
+                                <div>
                                     <Link className={styles.form_health_link} to='/animals'><BsChevronLeft /> Voltar</Link>
                                 </div>
 
