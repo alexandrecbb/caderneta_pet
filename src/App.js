@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Pages/Home';
 import Animals from './components/Pages/Animals';
-import Annotation from './components/Pages/Annotation';
+import About from './components/Pages/About';
 import RegisterAnimal from './components/Pages/RegisterAnimal';
 import VaccinationSchedule from './components/Pages/VaccinationSchedule';
 import Container from './components/layout/Container';
@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/animals' element={<Animals />} />
-          <Route path='/annotation' element={<Annotation />} />
+          <Route path='/about' element={<About />} />
           <Route path='/registeranimal' element={<RegisterAnimal />} />
           <Route path='/vaccinationschedule' element={<VaccinationSchedule />} />
           <Route path='/animals/:id' element={<Animal />} />

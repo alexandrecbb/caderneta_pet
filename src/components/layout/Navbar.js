@@ -22,7 +22,7 @@ function Navbar() {
                         <Link to="/vaccinationschedule">Cronograma</Link>
                     </li>
                     <li className={styles.item}>
-                        <Link to="/annotation">Anotações</Link>
+                        <Link to="/about">Sobre</Link>
                     </li>
                 </ul>
             </Container>
