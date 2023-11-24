@@ -211,7 +211,6 @@
       "name": "Feminino"
     }
   ],
-
   "Users": [
     {
       "id": 1,
@@ -224,7 +223,6 @@
       "password": "user"
     }
   ],
-
   "auth": {
     "accessToken": "aaaaaaaaaa.bbbbbbbbbb.ccccccccccc"
   }

@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    padding: 40px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    gap: 5px
+}
+
+.container h1 {
+    margin-bottom: 0.3em;
+}
+
+.container p {
+    margin-bottom: 1.8em;
+}
+
+.container a {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 0.5 em;
+    color: #555;
+    transition: all linear 160ms;
+}
+
+.container button {
+    background-color: #ff266c;
+    color: #fff;
+    padding: 0.5em 1.2em;
+    text-decoration: none;
+    transition: 0.5s;
+    cursor: pointer;
+    border: none;
+    font-size: 1em;
+}
+
+.container button:hover {
+    color: #000072;
+}
+
+
