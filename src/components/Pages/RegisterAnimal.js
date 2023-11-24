@@ -33,7 +33,7 @@ function RegisterAnimal() {
     return (
         <div className={styles.registerAnimal_container}>
             <h1>Registrar Animal</h1>
-            <p>Registre o animnal para acompar os parametros de saúde</p>
+            <p>Registre o animnal para acompanhar os parametros de saúde</p>
             <AnimalForm handleSubmit={createPost} btnText="Confirmar Registro" />
         </div>
     )
