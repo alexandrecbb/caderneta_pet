@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import styles from './HealthRecordCard.module.css'
 import { BsPencil, BsFillTrashFill } from 'react-icons/bs'
 import { useParams } from 'react-router-dom'
