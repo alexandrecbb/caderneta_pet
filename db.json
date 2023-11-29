@@ -224,6 +224,7 @@
     }
   ],
   "auth": {
-    "accessToken": "aaaaaaaaaa.bbbbbbbbbb.ccccccccccc"
+    "email": "alexandrecbbrasileiro@gmail.com",
+    "password": "s"
   }
 }

@@ -3,7 +3,12 @@ import styles from './Navbar.module.css'
 import logo from '../../img/Logo Caderneta Pet.png'
 import Container from './Container';
 
+import { useContext} from 'react';
+import { AuthContext } from '../../components/context/AuthContext';
+
 function Navbar() {
+
+    const { isAuthenticated, logout } = useContext(AuthContext);
 
     return (
         <nav className={styles.navbar}>
@@ -25,7 +30,7 @@ function Navbar() {
                         <Link to="/about">Sobre</Link>
                     </li>
                     <li className={styles.item}>
-                        <Link to="/login">Login</Link>
+                        {isAuthenticated ? <Link  onClick={logout} to="/">Sair</Link> : <Link to="/login">Login</Link>}
                     </li>
                 </ul>
             </Container>
