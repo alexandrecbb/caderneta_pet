@@ -16,7 +16,7 @@ function Animal() {
 
     useEffect(() => {
         setTimeout(() => {
-            fetch(`http://localhost:5000/animals/${id}`, {
+            fetch(`${process.env.REACT_APP_API_URL}/animal/${id}`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ function Animal() {
 
     function editPost(animal) {
 
-        fetch(`http://localhost:5000/animals/${animal.id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/animal/${animal.id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'

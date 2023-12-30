@@ -14,7 +14,7 @@ function RegisterAnimal() {
         animal.deworming = []
         animal.ectoparasites = []
 
-        fetch("http://localhost:5000/animals", {
+        fetch(`${process.env.REACT_APP_API_URL}/animal`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

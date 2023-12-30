@@ -25,7 +25,7 @@ function Animals() {
 
         setTimeout(() => {
 
-            fetch("http://localhost:5000/animals", {
+            fetch(`${process.env.REACT_APP_API_URL}/animal`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ function Animals() {
     }, [])
 
     function removeAninmal(id) {
-        fetch(`http://localhost:5000/animals/${id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/animal/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'

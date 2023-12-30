@@ -39,7 +39,7 @@ function HealthRecord() {
     useEffect(() => {
 
         setTimeout(() => {
-            fetch(`http://localhost:5000/animals/${id}`, {
+            fetch(`${process.env.REACT_APP_API_URL}/animal/${id}`, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ function HealthRecord() {
         const lastHealthRecord = animal[healthRecord][animal[healthRecord].length - 1]
         lastHealthRecord.id = uuidv4()
 
-        fetch(`http://localhost:5000/animals/${animal.id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/animal/${animal.id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ function HealthRecord() {
 
         animalUpdated[healthRecord] = healthRecordsUpdated
 
-        fetch(`http://localhost:5000/animals/${animalUpdated.id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/animal/${animalUpdated.id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
@@ -142,7 +142,7 @@ function HealthRecord() {
         updatedAnimal[healthRecord][indexToEdit] = medication
 
 
-        fetch(`http://localhost:5000/animals/${updatedAnimal.id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/animal/${updatedAnimal.id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
