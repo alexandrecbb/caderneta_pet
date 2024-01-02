@@ -11,7 +11,7 @@ function AnimalForm({ handleSubmit, btnText, projectData }) {
     const [animal, setAnimal] = useState(projectData || {})
 
     useEffect(() => {
-        fetch("http://localhost:5000/gender", {
+        fetch(`${process.env.REACT_APP_API_URL}/gender`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'

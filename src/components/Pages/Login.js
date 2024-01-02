@@ -12,8 +12,9 @@ function Login() {
     const { isAuthenticated, login } = useContext(AuthContext);
 
 
-    const submit = () => {
-        login();
+    const submit = (e) => {
+        e.preventDefault()
+        login(email, password);
     }
 
     return (

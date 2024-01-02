@@ -25,7 +25,7 @@ function App() {
         <Container customClass="min-height">
           <Routes>
             <Route exact path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/login' element={!isAuthenticated ? <Login /> : <Navigate to="/" replace />} />
             <Route path='/animals' element={isAuthenticated ? <Animals /> : <Navigate to="/login" replace />} />
             <Route path='/about' element={<About />} />
             <Route path='/registeranimal' element={isAuthenticated ? <RegisterAnimal /> : <Navigate to="/login" replace />} />

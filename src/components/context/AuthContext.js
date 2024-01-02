@@ -23,14 +23,14 @@ export const AuthProvider = ({ children }) => {
 
 
 
-  const login = useCallback(() => {
+  const login = useCallback((email, password) => {
 
-    fetch('http://localhost:5000/auth/accessToken', {
-      method: "GET",
+    fetch(`${process.env.REACT_APP_API_URL}/enter`, {
+      method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      //body: JSON.stringify({email, password}),
+      body: JSON.stringify({email, password}),
     })
       .then((resp) => resp.json())
       .then((data) => {
