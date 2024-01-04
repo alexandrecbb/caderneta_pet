@@ -9,42 +9,43 @@ export const AuthProvider = ({ children }) => {
 
   const [accessToken, setAccessToken] = useState()
 
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN);
-
-    if (accessToken) {
-      console.log(accessToken)
-      setAccessToken(JSON.parse(accessToken));
-    } else {
-      setAccessToken(undefined);
-    }
-  }, []);
-
-
-
   const login = useCallback((email, password) => {
 
     fetch(`${process.env.REACT_APP_API_URL}/enter`, {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN)}`
       },
       body: JSON.stringify({email, password}),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data)
-        setAccessToken(data)
-        localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify(data));
+
+        const [key, value] = Object.entries(data)[0]
+
+        if(key === 'accessToken'){
+          localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify(value))
+          setAccessToken(value)
+        }
+    
       })
       .catch((err) => {
-
         console.error(err)
-        return new Error(err.message || 'Erro no login.')
+        console.log('erro catch')
       })
 
   }, []);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN)
+
+    if (accessToken) {
+      setAccessToken(JSON.parse(accessToken))
+    } else {
+      setAccessToken(undefined)
+    }
+  }, [setAccessToken]);
 
   const logout = useCallback(() => {
 
@@ -53,12 +54,12 @@ export const AuthProvider = ({ children }) => {
 
   }, []);
 
-  const isAuthenticated = useMemo(() => !!accessToken, [accessToken]);
+  const isAuthenticated = useMemo(() => !!accessToken, [accessToken])
 
-  useEffect(() => {
-    console.log("isAuthenticated:", isAuthenticated);
-    console.log("accessToken:", accessToken);
-  }, [isAuthenticated, accessToken]);
+  // useEffect(() => {
+  //   console.log(isAuthenticated);
+  //   console.log(accessToken);
+  // }, [isAuthenticated, accessToken]);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
