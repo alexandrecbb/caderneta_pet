@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import Input from '../form/Input'
 import Select from '../form/Select'
@@ -7,22 +7,7 @@ import styles from './AnimalForm.module.css'
 
 function AnimalForm({ handleSubmit, btnText, projectData }) {
 
-    const [gender, setGender] = useState([])
     const [animal, setAnimal] = useState(projectData || {})
-
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/gender`, {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then((resp) => resp.json())
-            .then((data) => {
-                setGender(data)
-            })
-            .catch((err) => console.error(err))
-    }, [])
 
     const submit = (e) => {
         e.preventDefault()
@@ -31,16 +16,6 @@ function AnimalForm({ handleSubmit, btnText, projectData }) {
 
     function handleChange(e) {
         setAnimal({ ...animal, [e.target.name]: e.target.value })
-    }
-
-    function handleGender(e) {
-        setAnimal({
-            ...animal,
-            gender: {
-                id: e.target.value,
-                sex: e.target.options[e.target.selectedIndex].text,
-            },
-        })
     }
 
     return (
@@ -64,11 +39,10 @@ function AnimalForm({ handleSubmit, btnText, projectData }) {
             />
 
             <Select
-                name="gender_id"
+                name="gender"
                 text="Selecione gênero do animal"
-                options={gender}
-                handleOnChange={handleGender}
-                value={animal.gender ? animal.gender.id : ''}
+                handleOnChange={handleChange}
+                value={animal.gender ? animal.gender : ''}
             />
             <Input
                 type="text"

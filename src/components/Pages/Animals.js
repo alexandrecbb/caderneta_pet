@@ -28,7 +28,8 @@ function Animals() {
             fetch(`${process.env.REACT_APP_API_URL}/animal`, {
                 method: "GET",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN')}`
                 },
             })
                 .then((resp) => resp.json())
@@ -41,18 +42,26 @@ function Animals() {
 
     }, [])
 
-    function removeAninmal(id) {
+    function removeAnimal(id) {
         fetch(`${process.env.REACT_APP_API_URL}/animal/${id}`, {
             method: "DELETE",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN')}`
             },
         })
-            .then((resp) => resp.json())
-            .then(() => {
-                setAnimals(animals.filter((animal) => animal.id !== id))
-                setAnimalMessege('Registro de animal removido!')
-                //message
+            .then((resp) => {
+                if (resp.status === 204) {
+                    setAnimals(animals.filter((animal) => animal.id !== id))
+                    setAnimalMessege('Registro de animal removido!')
+                    return null
+                }else {
+                    console.error('Falha ao deletar o item:', resp.status);
+                    return resp.json(); 
+                  }
+            })
+            .then((data) => {
+                console.log(data)
             })
             .catch((err) => console.error(err))
     }
@@ -78,7 +87,7 @@ function Animals() {
                             race={animal.race}
                             hair={animal.hair}
                             key={animal.id}
-                            handleRemove={removeAninmal}
+                            handleRemove={removeAnimal}
                         />
                     ))
                 }

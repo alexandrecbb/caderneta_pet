@@ -16,7 +16,7 @@ function AnimalCard({ id, name, birth, gender, kind, race, hair, handleRemove })
             <h2>{name}</h2>
             <div className={styles.animal_card_inf}>
                 <p>Nasc.: {birth}</p>
-                <p>Sexo: {gender.sex}</p>
+                <p>Sexo: {gender}</p>
                 <p>Espécie: {kind}</p>
                 <p>Raça: {race}</p>
                 <p>Pelagem: {hair}</p>

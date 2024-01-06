@@ -2,9 +2,6 @@ import { createContext, useCallback, useMemo, useState, useEffect } from 'react'
 
 export const AuthContext = createContext();
 
-const LOCAL_STORAGE_KEY__ACCESS_TOKEN = 'APP_ACCESS_TOKEN';
-
-
 export const AuthProvider = ({ children }) => {
 
   const [accessToken, setAccessToken] = useState()
@@ -15,7 +12,7 @@ export const AuthProvider = ({ children }) => {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN)}`
+        'Authorization': `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN')}`
       },
       body: JSON.stringify({email, password}),
     })
@@ -25,41 +22,36 @@ export const AuthProvider = ({ children }) => {
         const [key, value] = Object.entries(data)[0]
 
         if(key === 'accessToken'){
-          localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify(value))
+          localStorage.setItem('APP_ACCESS_TOKEN', value)
           setAccessToken(value)
         }
     
       })
       .catch((err) => {
         console.error(err)
-        console.log('erro catch')
+        console.log('erro ao aconectar ao servidor')
       })
 
   }, []);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN)
+    const accessToken = localStorage.getItem('APP_ACCESS_TOKEN')
 
     if (accessToken) {
-      setAccessToken(JSON.parse(accessToken))
+      setAccessToken(accessToken)
     } else {
       setAccessToken(undefined)
     }
-  }, [setAccessToken]);
+  }, []);
 
   const logout = useCallback(() => {
 
-    localStorage.removeItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN);
+    localStorage.removeItem('APP_ACCESS_TOKEN');
     setAccessToken(undefined);
 
   }, []);
 
   const isAuthenticated = useMemo(() => !!accessToken, [accessToken])
-
-  // useEffect(() => {
-  //   console.log(isAuthenticated);
-  //   console.log(accessToken);
-  // }, [isAuthenticated, accessToken]);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>

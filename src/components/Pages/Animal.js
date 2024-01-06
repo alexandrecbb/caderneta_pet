@@ -19,7 +19,8 @@ function Animal() {
             fetch(`${process.env.REACT_APP_API_URL}/animal/${id}`, {
                 method: "GET",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN')}`
                 }
             })
                 .then((resp) => resp.json())
@@ -31,20 +32,31 @@ function Animal() {
     }, [id])
 
     function editPost(animal) {
+        const animalData = { ...animal }; // Cria um clone do objeto animal
+        delete animalData.id
 
         fetch(`${process.env.REACT_APP_API_URL}/animal/${animal.id}`, {
-            method: "PATCH",
+            method: "PUT",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN')}`
             },
-
-            body: JSON.stringify(animal)
+            body: JSON.stringify(animalData)
         })
-            .then((resp) => resp.json())
+            .then((resp) => {
+                if (resp.status === 200) {
+
+                    setAnimal(animal)
+                    //redirect
+                    history('/animals', { state: { message: "Informaçoes atualizadas com sucesso!" } })
+                    return null
+                } else {
+                    console.error('Falha ao atualizar o registro:', resp.status);
+                    return resp.json();
+                }
+            })
             .then((data) => {
-                setAnimal(data)
-                //redirect
-                history('/animals', { state: { message: "Informaçoes atualizadas com sucesso!" } })
+                console.log(data)
             })
             .catch((err) => console.error(err))
     }

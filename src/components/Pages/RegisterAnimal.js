@@ -9,15 +9,11 @@ function RegisterAnimal() {
 
     function createPost(animal) {
 
-        // Initializing the Realth Record
-        animal.vaccines = []
-        animal.deworming = []
-        animal.ectoparasites = []
-
         fetch(`${process.env.REACT_APP_API_URL}/animal`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('APP_ACCESS_TOKEN')}`
             },
             body: JSON.stringify(animal),
         })
